@@ -1,0 +1,246 @@
+---
+title: "Title goes here"
+subtitle: Subtitle goes here
+bibliography: library.bib
+csl: 'apa-5th-edition.csl'
+output: 
+  bookdown::word_document2: 
+    reference_docx: ER_style_copy.docx
+    toc: true
+---
+  
+\newpage
+\
+**Disclaimer**
+\
+Insert disclaimer text here if required.
+\
+**Acknowledgements**
+
+Insert acknowledgements here if required.
+\
+
+This document may be cited as: Ministry for the Environment. year.
+*Title of publication*. Wellington: Ministry for the Environment.
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+Published in month year by the\
+Ministry for the Environment\
+Manatū Mō Te Taiao\
+PO Box 10362, Wellington 6143, New Zealand
+
+ISBN: ISBN print version (print)\
+ISBN online version (online)
+
+Publication number: ME xxxx
+
+© Crown copyright New Zealand Year
+
+This document is available on the Ministry for the Environment website:
+[www.mfe.govt.nz](http://www.mfe.govt.nz).
+
+![](media/image3.jpeg){width="2.9666951006124234in"
+height="1.2804483814523184in"}
+
+\newpage
+
+Contents {#contents .Heading}
+========
+
+[Heading 1 ](#heading-1)
+
+[Heading 2 ](#heading-2)
+
+[Appendix ](#appendix)
+
+[References](#references)
+
+Tables {#tables .Heading}
+======
+
+[Table 1: Sample table layout 5]
+This should reference the first sample table \@ref(tab:sample_table)
+
+Figures {#figures .Heading}
+=======
+
+This should reference the Figures \@ref(tab:figure1)
+
+[Figure 1: Insert graph or chart here 6](#_Toc454963834)
+
+
+**Heading 1**
+=============
+
+Heading 2
+---------
+
+This is an example of how to cite papers from a bibtex library.
+A recent increase in global wave power is a consequence of oceanic warming [@Reguero2019]. 
+
+
+
+### Heading 3
+
+Body text.
+
+#### Heading 4
+
+Body text.
+
+> Quote quote quote
+
+##### Heading 5
+
+Body text :
+
+-   bullet
+
+<!-- -->
+
+-   sub-list.[^1]
+\
+\
+\
+```{r setup, echo = FALSE, warning = FALSE, message = FALSE}
+library(flextable) # Will need the developing version from github for cross referencing devtools::install_github('davidgohel/flextable') in the future, which has added the functionality of crossreferencing using bookdown. For now, using the CRAN flextable version allows us to avoid having captions on top of the blue and green boxes and quote box. 
+library(tidyverse)
+library(ggplot2)
+library(officer)
+
+```
+
+```{r sample_table, ft.align="left", echo = FALSE, warning = FALSE, message = FALSE}
+# All the formating options available: https://davidgohel.github.io/flextable/articles/format.html
+
+big_border = fp_border(color='#1c556c', width = 0.5)
+border_v = fp_border(color = '#1c556c')
+border_h = fp_border(color = '#1c556c')
+border_white = fp_border(color = 'white', width = 0.5)
+
+sample_table <- flextable(
+  head(mtcars),
+  col_keys = c('am', 'carb', 'gear', 'mpg', 'drat' ))
+sample_table <- border_outer(sample_table, part = 'all', border = big_border)
+sample_table <- bg(sample_table, bg = '#1c556c', part = 'header')
+sample_table <- color(sample_table, color = "white", part = "header")
+sample_table <- font(sample_table, fontname = "Calibri")
+sample_table <- fontsize(sample_table, size = 12)
+sample_table <- border_inner_v(sample_table, part="all", border = border_v )
+sample_table <- border_inner_h(sample_table, part = 'body', border = border_h)
+sample_table <- autofit(sample_table, add_w = 0.5)
+sample_table <- vline_left(sample_table,part='all', border = border_white)
+sample_table <- vline_right(sample_table, part = 'all', border = border_white)
+sample_table <- set_caption(sample_table, 'Table 1: Sample table layout.')
+sample_table 
+
+```
+\
+```{r blue box, ft.align="left", echo = FALSE, message = FALSE, warning = FALSE}
+
+text_in_table <- c('Blue box text', '\U2022 Blue box bullet', '\U2022 Blue box bullet', '\U2014 Blue box sub-bullet', '\U2014 Blue box sub-bullet', 'Blue box text' )
+my_text <- as.data.frame(text_in_table)
+
+big_border = fp_border(color = '#d2dde2', width = 0.5)
+border_v = fp_border(color = '#d2dde2' )
+border_h = fp_border(color = '#d2dde2')
+
+bluebox <- flextable(my_text)
+bluebox <- set_header_labels(bluebox, text_in_table = 'Blue box heading')
+bluebox <- bg(bluebox, bg = '#d2dde2', part = 'header')
+bluebox <- bold(bluebox, part = "header")
+bluebox <- color(bluebox, color = '#1c556c', part = 'all')
+bluebox <- bg(bluebox, bg = '#d2dde2')
+bluebox <- font(bluebox, fontname = "Calibri")
+bluebox <- fontsize(bluebox, size = 11)
+bluebox <- border_outer(bluebox, part = 'all', border = big_border)
+bluebox <- autofit(bluebox, add_w = 4)
+bluebox <- align( bluebox, align = "left", part = "all" )
+bluebox
+
+```
+\
+```{r quote box, ft.align="left",echo = FALSE, message = FALSE, warning = FALSE}
+
+quote_text <- c('fill up','nothing here, just to fill up', '\U25B6 \U25B6 Quote \U25C0 \U25C0', 'nothing here either','fill up')
+#quote_text <- '\U25B6 \U25B6 Quote \U25C0 \U25C0'
+quote <- as.data.frame(quote_text)
+
+big_border = fp_border(color = '#1c556c', width = 0.5)
+border_v = fp_border(color = '#1c556c' )
+border_h = fp_border(color = '#1c556c')
+
+quote_box <- flextable(quote)
+quote_box <- set_header_labels(quote_box, quote_text = '')
+quote_box <- bg(quote_box, bg = '#1c556c', part = 'all')
+quote_box <- border_outer(quote_box, part = 'all', border = big_border)
+quote_box <- color(quote_box, color = 'white', part = 'body')
+quote_box <- color(quote_box, i = c(1,2,4,5), color = '#1c556c')
+quote_box <- font(quote_box, fontname = "Calibri")
+quote_box <- fontsize(quote_box, size = 11)
+quote_box <- align( quote_box, align = "left", part = "all" )
+quote_box <- autofit(quote_box, add_w = 1, add_h = 0.9)
+quote_box
+
+```
+
+ ![Figure 2: Insert graph or chart here](media/image4.jpeg){width="2.952755905511811in" height="1.968503937007874in"}
+
+
+\
+```{r green box, ft.align="left", echo = FALSE, message = FALSE, warning = FALSE}
+
+text_in_table <- c('Green heading \U2014 case study', 'Green text \U2014 case study Green text \U2014 case study Green text \U2014 case study Green text – case', 'Green heading \U2014 case study' , '\U2022 Green bullet \U2014 case study', '\U2014 Green sub-bullet \U2014 case study ', 'Green text \U2014 case study' )
+
+my_text <- as.data.frame(text_in_table)
+
+big_border = fp_border(color = '#d2dde2', width = 0.5)
+border_v = fp_border(color = '#d2dde2' )
+border_h = fp_border(color = '#d2dde2')
+
+greenbox <- flextable(my_text)
+greenbox <- set_header_labels(greenbox, text_in_table = 'CASE STUDY')
+greenbox <- bg(greenbox, bg = '#0f7b7d', part = 'header')
+greenbox <- bg(greenbox, bg = '#cfe5e5', part = 'body')
+greenbox <- bold(greenbox, part = "header")
+greenbox <- bold(greenbox, i = 1, part = 'body')
+greenbox <- color(greenbox, color = 'white', part = 'header')
+greenbox <- color(greenbox, color = '#0f7b7d', part = 'body')
+greenbox <- font(greenbox, fontname = "Calibri")
+greenbox <- fontsize(greenbox, size = 11)
+greenbox <- border_outer(greenbox, part = 'all', border = big_border)
+greenbox <- autofit(greenbox, add_w = 1)
+greenbox <- align( greenbox, align = "left", part = "all" )
+greenbox
+
+```
+
+
+Appendix
+========
+
+References
+==========
+
+Author. Date. *Title of publication*. Place of publication: Name of
+publisher.
+
+For example:
+
+Ministry for the Environment. 2007. *Environment New Zealand 2007*.
+Wellington: Ministry for the Environment.
+
+[^1]: Footnote style.
