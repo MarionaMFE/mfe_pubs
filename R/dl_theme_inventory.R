@@ -1,5 +1,12 @@
+#' A Function by Dan Lawrence
+#'
+#' This function allows you to express your love of cats.
+#' @param font_family the value that you are trying to modify
+#' @keywords ggplot-formatting
+#' @export
+#' @examples
+#' theme_inventory()
 
-#Define theme_inventory() function
 theme_inventory <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10)
 {
   list(theme(plot.title = element_text(family = font_family,
