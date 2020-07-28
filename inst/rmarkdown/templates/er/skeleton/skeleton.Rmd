@@ -4,10 +4,16 @@ subtitle: Subtitle goes here
 bibliography: library.bib
 csl: 'apa-5th-edition.csl'
 output: 
-  bookdown::word_document2: 
+  officedown::rdocx_document: 
     reference_docx: ER_style_copy.docx
+    lists:
+      ol.style: Default ol
+      ul.style: Default ul
     toc: true
 ---
+```{r include = FALSE}
+library(officedown)
+```
   
 \newpage
 \
@@ -95,7 +101,14 @@ A recent increase in global wave power is a consequence of oceanic warming [@Reg
 
 ### Heading 3
 
-Body text.
+1. An item
+1. An item
+    1. An item
+        1. An item
+        2. An item
+    2. An item
+2. An item
+
 
 #### Heading 4
 
