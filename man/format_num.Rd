@@ -2,17 +2,20 @@
 % Please edit documentation in R/dl_format_number.R
 \name{format_num}
 \alias{format_num}
-\title{A Function by Dan Lawrence}
+\title{A Function to Format Numbers}
 \usage{
 format_num(number_value, accuracy = 0.01)
 }
 \arguments{
-\item{number_value}{the value that you are trying to modify}
+\item{number_value}{the number to modify}
 }
 \description{
-This function allows you to express your love of cats.
+Consistenly formatting of numbers.
 }
 \examples{
-format_num()
+format_num(1520000)
+> "1,520,000.00"
+format_num(0.00008)
+> "0.00"
 }
 \keyword{number-formatting}

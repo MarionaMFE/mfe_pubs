@@ -1,11 +1,16 @@
-#' A Function by Dan Lawrence
+#' MfE theme for ggplot2 plots
 #'
-#' This function allows you to express your love of cats.
-#' @param font_family the value that you are trying to modify
+#' Function to apply MfE theme (for now, copied form simplevis)
+#' @param font_family defaults to Helvetica
+#' @param font_size_title defaults to 11
+#' @param font_size_body defaults to 10
 #' @keywords ggplot-formatting
 #' @export
 #' @examples
+#' ggplot(msleep, aes( x = sleep_total , y = reorder(name, -sleep_total ))) +
+#' geom_point()+
 #' theme_inventory()
+
 
 theme_inventory <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10)
 {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dl_theme_inventory.R
 \name{theme_inventory}
 \alias{theme_inventory}
-\title{A Function by Dan Lawrence}
+\title{MfE theme for ggplot2 plots}
 \usage{
 theme_inventory(
   font_family = "Helvetica",
@@ -11,12 +11,18 @@ theme_inventory(
 )
 }
 \arguments{
-\item{font_family}{the value that you are trying to modify}
+\item{font_family}{defaults to Helvetica}
+
+\item{font_size_title}{defaults to 11}
+
+\item{font_size_body}{defaults to 10}
 }
 \description{
-This function allows you to express your love of cats.
+Function to apply MfE theme (for now, copied form simplevis)
 }
 \examples{
+ggplot(msleep, aes( x = sleep_total , y = reorder(name, -sleep_total ))) +
+geom_point()+
 theme_inventory()
 }
 \keyword{ggplot-formatting}
