@@ -115,7 +115,15 @@ Th
 ```{r color, }
 kayaplot + 
   theme_mfe() +
-  scale_color_branded()
+  scale_colour_mfe(direction = -1)
+```
 
+
+```{r color, }
+mfe_colours
+```
+
+
+```{r color, }
 ```
 
