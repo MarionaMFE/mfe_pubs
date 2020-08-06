@@ -2,6 +2,7 @@
 output: github_document
 ---
 
+
 ```{r setup, eval = TRUE, warning = FALSE, message = FALSE, echo = FALSE}
 library(ggplot2)
 library(tidyverse)
@@ -13,22 +14,70 @@ knitr::opts_chunk$set(
 
 ```
 
-# mfePubs <img src="man/figures/mfepubslogo.png" align="right" width="120" />
+# mfePubs  <img src="man/figures/mfepubslogo.png" align="right" width="120" /> 
 
-```mfePubs``` is a package for homogenising the graphical outputs of code based analysis in MfE. 
+```mfePubs``` is a package for homogenising the graphical outputs of code based analysis at MfE. 
 
 ## Installation
 
-```{r, eval = FALSE}
+```{r installation, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 # mfePubs is under development, so it is not available on CRAN
 # and needs to be installed from github
 # install.packages("devtools")
 devtools::install_github("MarionaMFE/mfe_pubs")
 ```
 
-When you have downloaded the package and successfully installed it you are good to go and create charts.
+## Contents
+The package contains the following functions and templates:
+
+1- ```er template report```: Environmental Reporting R Markdown/Word template 
+
+2- ```mfe_theme()```: Function to set ggplot themes to mfe standard
+
+3- ```mfe_colours()```: Function to apply mfe branded color palette to ggplot
+
+4- ```format_num()```: Function to standarise the format of numbers; (decimal places, thousands marks )
+
+5- ```macron()```: Function that makes sure macrons are displayed in graphs 
+
+When you have downloaded the package and successfully installed it you are good to go and write MfE word documents in R Markdown and create charts with MfE themes and colors, including the correct usage of Macrons in Te Reo.
 
 ## Usage
+
+
+### Functions
+#### Clean the data before plotting and prepare it for ggplot
+
+```{r tidy_chunk, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+
+library(mfePubs)
+
+library(tidyverse)
+library(reshape2)
+library(tidyverse)
+library(lubridate)
+
+# load the kaya dataset attached with mfePubs package
+data(kaya)
+
+# tidy data (transpose it)
+kaya %>% 
+  rownames_to_column %>%
+  gather(variable, value, -rowname) %>%
+  spread(rowname, value) -> spread_table
+
+# change variable names
+names(spread_table) <- c('year', 'population', 'gdp_per_capita', 'co2', 'energy_per_gdp', 'co2_per_energy')
+
+# remove first line and make 'year' a numeric variable
+spread_table %>% 
+  filter(year != 'X') %>%
+  mutate(year = as.numeric(str_remove(year, 'X'))) %>%
+  select (-co2) -> spread_table
+
+data_long <- melt(spread_table, id = 'year')
+
+```
 
 ### ```theme_mfe()```
 
@@ -40,8 +89,33 @@ The function is pretty basic and does not change or adapt based on the type of c
 
 Example of how it is used in a standard workflow:
 
-```{r example_theme_mfe, echo = TRUE, warnings = FALSE, message = FALSE}
-plot <- ggplot()
+```{r example_theme_mfe, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
+kayaplot <- ggplot(data_long, aes(x = year, y = as.numeric(value), colour = variable)) +
+  geom_line(size = 1.5) +
+  ggtitle('Kaya identity, New Zealand, 1990-2018') +
+  ylab('base 100') +
+  xlab('year') +
+  scale_x_continuous(n.breaks=length(unique(data_long$year))/5)
+
+kayaplot
 
 ```
+
+This is what the ggplot default theme looks like. Now to apply the MfE style just need to add the function call:
+
+``` {r add_mfe_theme, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+
+kayaplot + theme_mfe() 
+```
+### ```colour_mfe()```
+
+Th
+
+```{r color, }
+kayaplot + 
+  theme_mfe() +
+  scale_color_branded()
+
+```
+

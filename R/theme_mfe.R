@@ -9,10 +9,10 @@
 #' @examples
 #' ggplot(msleep, aes( x = sleep_total , y = reorder(name, -sleep_total ))) +
 #' geom_point()+
-#' theme_inventory()
+#' theme_mfe()
 
 
-theme_inventory <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10)
+theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10)
 {
   list(theme(plot.title = element_text(family = font_family,
                                        colour = "#000000",

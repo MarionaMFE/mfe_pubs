@@ -12,7 +12,7 @@
 # Inspiration from: https://www.garrickadenbuie.com/blog/custom-discrete-color-scales-for-ggplot2/
 
 # setup named list of MfE colours
-branded_colors <- list(
+mfe_colors <- list(
   "dark_blue" = "#1C556C",
   "blue" = "#32809C",
   "dark_green" = "#0F7B7D",
@@ -24,14 +24,14 @@ branded_colors <- list(
 
 # created branded palette function
 branded_pal <- function(
-  primary = "blue",
-  other = "grey",
+  primary = "dark_blue",
+  other = "orange",
   direction = 1
 ) {
   stopifnot(primary %in% names(branded_colors))
 
   function(n) {
-    if (n > 6) warning("Branded Color Palette only has 6 colors.")
+    if (n > 7) warning("Branded Color Palette only has 7 colors.")
 
     if (n == 2) {
       other <- if (!other %in% names(branded_colors)) {
@@ -41,11 +41,11 @@ branded_pal <- function(
       }
       color_list <- c(other, branded_colors[primary])
     } else {
-      if (direction >= 0) {color_list <- branded_colors[1:n]} else { color_list<- tail(branded_colors,n)}
+      color_list <- branded_colors[1:n]
     }
 
     color_list <- unname(unlist(color_list))
-    color_list
+    if (direction >= 0) color_list else rev(color_list)
   }
 }
 
@@ -65,18 +65,6 @@ scale_colour_branded <- function(
 
 # by convention colour also spelled without U.
 scale_color_branded <- scale_colour_branded
-
-
-
-
-branded_pal()(2)
-## [1] "#8d96a3" "#00798c"
-branded_pal(other = "green")(2)
-## [1] "#66a182" "#00798c"
-branded_pal()(3)
-## [1] "#00798c" "#d1495b" "#edae49"
-branded_pal(direction = -1)(3)
-
 
 
 
