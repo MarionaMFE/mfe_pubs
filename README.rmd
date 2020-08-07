@@ -48,7 +48,7 @@ When you have downloaded the package and successfully installed it you are good 
 ### Functions
 #### Clean the data before plotting and prepare it for ggplot
 
-```{r tidy_chunk, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+```{r tidy_chunk, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
 library(mfePubs)
 

@@ -42,6 +42,36 @@ Macrons in Te Reo.
 
 #### Clean the data before plotting and prepare it for ggplot
 
+``` r
+
+library(mfePubs)
+
+library(tidyverse)
+library(reshape2)
+library(tidyverse)
+library(lubridate)
+
+# load the kaya dataset attached with mfePubs package
+data(kaya)
+
+# tidy data (transpose it)
+kaya %>% 
+  rownames_to_column %>%
+  gather(variable, value, -rowname) %>%
+  spread(rowname, value) -> spread_table
+
+# change variable names
+names(spread_table) <- c('year', 'population', 'gdp_per_capita', 'co2', 'energy_per_gdp', 'co2_per_energy')
+
+# remove first line and make 'year' a numeric variable
+spread_table %>% 
+  filter(year != 'X') %>%
+  mutate(year = as.numeric(str_remove(year, 'X'))) %>%
+  select (-co2) -> spread_table
+
+data_long <- melt(spread_table, id = 'year')
+```
+
 ### `theme_mfe()`
 
 A basic explanation and summary here:
