@@ -34,11 +34,11 @@ The package contains the following functions and templates:
 
 2- ```mfe_theme()```: Function to set ggplot themes to mfe standard
 
-3- ```mfe_colours()```: Function to apply mfe branded color palette to ggplot
+3- ```scale_colour_mfe``` and ```scale_fill_mfe```: Functions to apply mfe branded color palettes to discrete variables in ggplot graphs.
 
 4- ```format_num()```: Function to standarise the format of numbers; (decimal places, thousands marks )
 
-5- ```macron()```: Function that makes sure macrons are displayed in graphs 
+5- ```macron()```: Function that makes sure macrons are properly displayed in graphs. 
 
 When you have downloaded the package and successfully installed it you are good to go and write MfE word documents in R Markdown and create charts with MfE themes and colors, including the correct usage of Macrons in Te Reo.
 
@@ -48,7 +48,7 @@ When you have downloaded the package and successfully installed it you are good 
 ### Functions
 #### Clean the data before plotting and prepare it for ggplot
 
-```{r tidy_chunk, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+```{r tidy_chunk, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 
 library(mfePubs)
 
@@ -108,22 +108,80 @@ This is what the ggplot default theme looks like. Now to apply the MfE style jus
 
 kayaplot + theme_mfe() 
 ```
-### ```colour_mfe()```
 
-Th
+### ```scale_color_mfe()```
 
-```{r color, }
+
+To continue with the kaya plot example, we could add MfE branded colours. The function ```scale_color_mfe()``` can do that in one line of code: 
+
+```{r scale_colour,eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE }
 kayaplot + 
   theme_mfe() +
   scale_colour_mfe(direction = -1)
 ```
 
 
-```{r color, }
-mfe_colours
+### ```scale_fill_mfe()```
+
+```{r color_discrete, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+
+kaya_barplot <- ggplot(data_long, aes(x = year, y = as.numeric(value), fill = variable)) +
+  geom_col() +
+  ggtitle('Kaya identity, New Zealand, 1990-2018') +
+  ylab('base 100') +
+  xlab('year') +
+  scale_x_continuous(n.breaks=length(unique(data_long$year))/5) +
+  theme_mfe() +
+  scale_fill_mfe(direction = -1)
+
+kaya_barplot
+
 ```
 
+The MfE colours can be used in the functions ```ggplot2::scale_color_manual```and ```ggplot2::scale_fill_manual``` and they can be accessed by their names:
 
-```{r color, }
+```{r colour_custom_Scale, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE }
+mfe_colours
+
+image(volcano, col = unname(unlist(mfe_colours)))
+
+
+kaya_barplot_custom <- ggplot(data_long, aes(x = year, y = as.numeric(value), fill = variable)) +
+  geom_col() +
+  ggtitle('Kaya identity, New Zealand, 1990-2018') +
+  ylab('base 100') +
+  xlab('year') +
+  scale_x_continuous(n.breaks=length(unique(data_long$year))/5) +
+  theme_mfe() +
+  scale_fill_manual(values = c(mfe_colours$dark_blue, 
+                               mfe_colours$turquoise, 
+                               mfe_colours$brown, 
+                               mfe_colours$light_green))
+
+kaya_barplot_custom
+
+```
+
+### ```er template report``` 
+
+This template is an RMarkdown template that replicates the format and style from the ER word template. The template is made available with package installation. To access the template follow the steps:
+
+1- From RStudio File/ New File/ R Markdown / From Template
+
+<img src="man/figures/rmarkdown_template.png" align="centre" width="600" /> 
+
+
+2- Detailed instructions about the template can be found [here](https://github.com/mfe-nz/ER_template_markdown)
+
+### ```format_num()```
+
+The function format_num() is for homogenising the format of the numbers, for example, to ensure all the numbers within an R Markdown document follow the same rules of decimal positions and markers.
+
+```{r format_num, }
+format_num(156346831441)
+format_num(15)
+format_num(0.0000000005)
+format_num(0.2)
+
 ```
 
