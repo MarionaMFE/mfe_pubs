@@ -11,9 +11,30 @@
 #' geom_point()+
 #' theme_mfe()
 
+#font_family = 'Helvetica'
+#font_size_title = 11
+#font_size_body = 10
+#horizontal = FALSE
 
-theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10)
+theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10, horizontal = FALSE)
 {
+
+# Switch for horizontal axis labels
+  if (horizontal == FALSE){ axis.text.x = element_text(family = font_family,
+                                                       colour = "#323232",
+                                                       size = font_size_body,
+                                                       angle = 90)
+  } else {
+
+    axis.text.x = element_text(family = font_family,
+                               colour = "#323232",
+                               size = font_size_body,
+                               angle = 0)
+
+  }
+
+
+# List all the theme parts together
   list(theme(plot.title = element_text(family = font_family,
                                        colour = "#000000",
                                        size = font_size_title,
@@ -42,6 +63,7 @@ theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_siz
              strip.text = element_text(family = font_family,
                                        colour = "#323232",
                                        size = font_size_body),
+
              ## axis formats
              axis.title.x = element_text(family = font_family,
                                          colour = "#323232", size = font_size_body, margin = margin(t = 10)),
@@ -49,10 +71,7 @@ theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_siz
                                          colour = "#323232",
                                          size = font_size_body,
                                          margin = margin(r = 10)),
-             axis.text.x = element_text(family = font_family,
-                                        colour = "#323232",
-                                        size = font_size_body,
-                                        angle = 90),
+             axis.text.x = axis.text.x,
              axis.text.y = element_text(family = font_family,
                                         colour = "#323232",
                                         hjust = 1,
@@ -73,9 +92,6 @@ theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_siz
              legend.key = element_rect(fill = "white"),
              legend.key.height = unit(5, "mm"), legend.key.width = unit(5,
                                                                         "mm")))
+
+
 }
-
-
-
-
-

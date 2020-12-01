@@ -4,7 +4,12 @@
 \alias{theme_mfe}
 \title{MfE theme for ggplot2 plots}
 \usage{
-theme_mfe(font_family = "Helvetica", font_size_title = 11, font_size_body = 10)
+theme_mfe(
+  font_family = "Helvetica",
+  font_size_title = 11,
+  font_size_body = 10,
+  horizontal = FALSE
+)
 }
 \arguments{
 \item{font_family}{defaults to Helvetica}
