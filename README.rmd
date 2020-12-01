@@ -185,3 +185,6 @@ format_num(0.2)
 
 ```
 
+### ```mac()```
+
+This function provides help in using m within R code/text. ```{r format_num(564654)}```
