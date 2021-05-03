@@ -5,7 +5,7 @@
 \title{MfE theme for ggplot2 plots}
 \usage{
 theme_mfe(
-  font_family = "Helvetica",
+  font_family = "Merriweather",
   font_size_title = 11,
   font_size_body = 10,
   horizontal = FALSE

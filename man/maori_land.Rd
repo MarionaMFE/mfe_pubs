@@ -4,9 +4,7 @@
 \name{maori_land}
 \alias{maori_land}
 \title{maori land dataset}
-\format{
-An object of class \code{data.frame} with 792 rows and 4 columns.
-}
+\format{An object of class \code{data.frame} with 792 rows and 4 columns.}
 \usage{
 data(maori_land)
 }

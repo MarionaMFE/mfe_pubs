@@ -4,7 +4,7 @@
 \alias{mfe_pal}
 \title{MfE set up mfe_pal()}
 \usage{
-mfe_pal(primary = "dark_green", other = "orange", direction = 1)
+mfe_pal(primary = "light_blue", other = "orange", direction = 1)
 }
 \description{
 MfE set up mfe_pal()

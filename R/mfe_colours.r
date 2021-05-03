@@ -8,12 +8,11 @@
 
 # setup named list of MfE colours
 mfe_colours <- list(
-  "dark_blue" = "#1C556C",
-  "blue" = "#32809C",
-  "dark_green" = "#0F7B7D",
+  "light_blue" = "#32809C",
+  "blue" = "#1B556B",
   "light_green" = "#2C9986",
-  "turquoise" = "#6FC7B7" ,
-  "brown" = "#8B391D",
-  "orange"= "#DA5A28"
+  "red" = "#BF2F37",
+  "orange"= "#DA5A28",
+  "metallic_blue" = "#1F3B71"
 )
 

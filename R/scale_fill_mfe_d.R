@@ -18,7 +18,7 @@
 
 # setup ggplot colour scale
 scale_fill_mfe <- function(
-  primary = "dark_blue",
+  primary = "light_blue",
   other = "orange",
   direction = 1,
   ...

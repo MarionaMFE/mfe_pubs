@@ -4,9 +4,7 @@
 \name{mfe_colours}
 \alias{mfe_colours}
 \title{MfE set upa list of MfE colours}
-\format{
-An object of class \code{list} of length 7.
-}
+\format{An object of class \code{list} of length 6.}
 \usage{
 mfe_colours
 }

@@ -16,7 +16,7 @@
 #font_size_body = 10
 #horizontal = FALSE
 
-theme_mfe <- function (font_family = "Helvetica", font_size_title = 11, font_size_body = 10, horizontal = FALSE)
+theme_mfe <- function (font_family = "Merriweather", font_size_title = 11, font_size_body = 10, horizontal = FALSE)
 {
 
 # Switch for horizontal axis labels

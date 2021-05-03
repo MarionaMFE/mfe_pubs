@@ -4,7 +4,7 @@
 \alias{scale_fill_mfe}
 \title{MfE discrete filling for ggplot2 plots}
 \usage{
-scale_fill_mfe(primary = "dark_blue", other = "orange", direction = 1, ...)
+scale_fill_mfe(primary = "light_blue", other = "orange", direction = 1, ...)
 }
 \arguments{
 \item{primary}{defaults to dark_green}

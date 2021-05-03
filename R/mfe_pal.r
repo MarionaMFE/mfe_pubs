@@ -8,7 +8,7 @@
 
 # created branded palette function
 mfe_pal <- function(
-  primary = "dark_green",
+  primary = "light_blue",
   other = "orange",
   direction = 1
 ) {

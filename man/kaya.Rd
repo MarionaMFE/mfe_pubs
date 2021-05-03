@@ -4,9 +4,7 @@
 \name{kaya}
 \alias{kaya}
 \title{Kaya dataset}
-\format{
-An object of class \code{data.frame} with 5 rows and 30 columns.
-}
+\format{An object of class \code{data.frame} with 5 rows and 30 columns.}
 \usage{
 data(kaya)
 }

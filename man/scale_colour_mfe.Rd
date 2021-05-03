@@ -4,7 +4,7 @@
 \alias{scale_colour_mfe}
 \title{MfE discrete colours for ggplot2 plots}
 \usage{
-scale_colour_mfe(primary = "dark_blue", other = "orange", direction = 1, ...)
+scale_colour_mfe(primary = "light_blue", other = "orange", direction = 1, ...)
 }
 \arguments{
 \item{primary}{defaults to dark_green}

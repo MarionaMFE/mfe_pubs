@@ -14,13 +14,13 @@ knitr::opts_chunk$set(
 
 ```
 
-# mfePubs  <img src="man/figures/mfepubslogo.png" align="right" width="120" /> 
+# mfePubs  <img src ="man/figures/mfepubslogo.png" align ="right" width ="120" /> 
 
 ```mfePubs``` is a package for homogenising the graphical outputs of code based analysis at MfE. 
 
 ## Installation
 
-```{r installation, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
+```{r installation, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
 # mfePubs is under development, so it is not available on CRAN
 # and needs to be installed from github
 # install.packages("devtools")
