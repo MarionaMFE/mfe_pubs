@@ -179,7 +179,7 @@ kaya_barplot_custom <- ggplot(data_long, aes(x = year, y = as.numeric(value), fi
   ylab('base 100') +
   xlab('year') +
   scale_x_continuous(n.breaks=length(unique(data_long$year))/5) +
-  theme_mfe() +
+  theme_mfe(horizontal_axis = TRUE) +
   scale_fill_manual(values = c(mfe_colours$light_green, 
                                mfe_colours$red, 
                                mfe_colours$orange, 

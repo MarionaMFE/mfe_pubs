@@ -17,24 +17,23 @@ devtools::install_github("MarionaMFE/mfe_pubs")
 
 The package contains the following functions and templates:
 
-1- `er template report`: Environmental Reporting R Markdown/Word
-template
+1- `er template report`: MfE’s Markdown/Word template
 
-2- `mfe_theme()`: Function to set ggplot themes to mfe standard
+2- `mfe_theme()`: Function to set ggplot themes to MfE standard
 
-3- `scale_colour_mfe` and `scale_fill_mfe`: Functions to apply mfe
+3- `scale_colour_mfe` and `scale_fill_mfe`: Functions to apply MfE
 branded color palettes to discrete variables in ggplot graphs.
 
 4- `format_num()`: Function to standarise the format of numbers;
-(decimal places, thousands marks )
+(decimal places, thousands marks)
 
 5- `macron()`: Function that makes sure macrons are properly displayed
 in graphs.
 
 When you have downloaded the package and successfully installed it you
 are good to go and write MfE word documents in R Markdown and create
-charts with MfE themes and colors, including the correct usage of
-Macrons in Te Reo.
+charts with MfE themes and colors, including the display of Macrons in
+Te Reo.
 
 ## Usage
 
@@ -76,11 +75,10 @@ data_long <- melt(spread_table, id = 'year')
 
 A basic explanation and summary here:
 
-`theme_mfe()`: has no arguments and is added to the ggplot chain after
-you have created a plot. What it does is generally makes text size, font
-and colour, axis lines, axis text and many other standard chart
-components into MfE style, which right now is pretty much a copy of
-Stats NZ’s [`simplevis`
+`theme_mfe()`: has is added to the ggplot chain after you have created a
+plot. What it does is generally makes text size, font and colour, axis
+lines, axis text and many other standard chart components into MfE
+style, which right now is pretty much a copy of Stats NZ’s [`simplevis`
 package](https://github.com/StatisticsNZ/simplevis).
 
 The function is pretty basic and does not change or adapt based on the
@@ -92,7 +90,11 @@ chart or bars for a bar chart, do not come out of the box from the
 theme\_mfe() function, but need to be explicitly set in your other
 standard ggplot chart functions.
 
-Example of how it is used in a standard workflow:
+`theme_mfe()` has two optional arguments: `horizontal_axis` which
+defaults to FALSE, and `bottom_legend` which defaults to TRUE.
+
+Example of how the function and its arguments are used in a standard
+workflow:
 
 ``` r
 
@@ -118,6 +120,38 @@ kayaplot + theme_mfe()
 
 ![](man/figures/README-add_mfe_theme-1.png)<!-- -->
 
+Let’s say we want the x axis labels to display horizontally
+
+``` r
+
+kayaplot + theme_mfe(horizontal_axis = TRUE)
+```
+
+![](man/figures/README-add_horizontal_switch-1.png)<!-- -->
+
+Or we might want the legend to display in the right hand side instead
+
+``` r
+kayaplot + theme_mfe(bottom_legend = FALSE)
+```
+
+![](man/figures/README-bottom_legend-1.png)<!-- -->
+
+For any other custom made modifications of the theme, just specify them
+*after* the theme\_mfe() call. If you specify them before, they’ll be
+overwritten by theme\_mfe()
+
+``` r
+kayaplot +
+  theme_mfe(horizontal_axis = TRUE, bottom_legend = FALSE) +
+  theme(axis.text.x = element_text(face="bold", color="#993333", 
+                           size=14, angle=45),
+          axis.text.y = element_text(face="bold", color="#993333", 
+                           size=14, angle=45))
+```
+
+![](man/figures/README-manual_modifications-1.png)<!-- -->
+
 ### `scale_color_mfe()`
 
 To continue with the kaya plot example, we could add MfE branded
@@ -142,7 +176,7 @@ kaya_barplot <- ggplot(data_long, aes(x = year, y = as.numeric(value), fill = va
   ylab('base 100') +
   xlab('year') +
   scale_x_continuous(n.breaks=length(unique(data_long$year))/5) +
-  theme_mfe() +
+  theme_mfe(horizontal_axis = TRUE) +
   scale_fill_mfe(direction = -1)
 
 kaya_barplot
@@ -189,8 +223,8 @@ kaya_barplot_custom <- ggplot(data_long, aes(x = year, y = as.numeric(value), fi
   xlab('year') +
   scale_x_continuous(n.breaks=length(unique(data_long$year))/5) +
   theme_mfe() +
-  scale_fill_manual(values = c(mfe_colours$light_blue, 
-                               mfe_colours$light_green, 
+  scale_fill_manual(values = c(mfe_colours$light_green, 
+                               mfe_colours$red, 
                                mfe_colours$orange, 
                                mfe_colours$metallic_blue))
 
@@ -199,10 +233,10 @@ kaya_barplot_custom
 
 ![](man/figures/README-colour_custom_Scale-2.png)<!-- -->
 
-### `er template report`
+### `MfE's Word template report`
 
 This template is an RMarkdown template that replicates the format and
-style from the ER word template. The template is made available with
+style from the MfE word template. The template is made available with
 package installation. To access the template follow the steps:
 
 1- From RStudio File/ New File/ R Markdown / From Template
