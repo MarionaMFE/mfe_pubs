@@ -8,7 +8,8 @@ theme_mfe(
   font_family = "Merriweather",
   font_size_title = 11,
   font_size_body = 10,
-  horizontal = FALSE
+  horizontal_axis = FALSE,
+  bottom_legend = TRUE
 )
 }
 \arguments{

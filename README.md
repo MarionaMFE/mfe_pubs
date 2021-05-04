@@ -1,5 +1,5 @@
 
-# mfePubs <img src="man/figures/mfepubslogo.png" align="right" width="120" />
+# mfePubs <img src ="man/figures/mfepubslogo.png" align ="right" width ="120" />
 
 `mfePubs` is a package for homogenising the graphical outputs of code
 based analysis at MfE.
@@ -156,26 +156,23 @@ can be accessed by their names:
 
 ``` r
 mfe_colours
-#> $dark_blue
-#> [1] "#1C556C"
-#> 
-#> $blue
+#> $light_blue
 #> [1] "#32809C"
 #> 
-#> $dark_green
-#> [1] "#0F7B7D"
+#> $blue
+#> [1] "#1B556B"
 #> 
 #> $light_green
 #> [1] "#2C9986"
 #> 
-#> $turquoise
-#> [1] "#6FC7B7"
-#> 
-#> $brown
-#> [1] "#8B391D"
+#> $red
+#> [1] "#BF2F37"
 #> 
 #> $orange
 #> [1] "#DA5A28"
+#> 
+#> $metallic_blue
+#> [1] "#1F3B71"
 
 image(volcano, col = unname(unlist(mfe_colours)))
 ```
@@ -192,10 +189,10 @@ kaya_barplot_custom <- ggplot(data_long, aes(x = year, y = as.numeric(value), fi
   xlab('year') +
   scale_x_continuous(n.breaks=length(unique(data_long$year))/5) +
   theme_mfe() +
-  scale_fill_manual(values = c(mfe_colours$dark_blue, 
-                               mfe_colours$turquoise, 
-                               mfe_colours$brown, 
-                               mfe_colours$light_green))
+  scale_fill_manual(values = c(mfe_colours$light_blue, 
+                               mfe_colours$light_green, 
+                               mfe_colours$orange, 
+                               mfe_colours$metallic_blue))
 
 kaya_barplot_custom
 ```

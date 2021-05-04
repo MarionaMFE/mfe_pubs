@@ -14,13 +14,14 @@
 #font_family = 'Helvetica'
 #font_size_title = 11
 #font_size_body = 10
-#horizontal = FALSE
+#horizontal_axis = FALSE
+#bottom_legend = TRUE
 
-theme_mfe <- function (font_family = "Merriweather", font_size_title = 11, font_size_body = 10, horizontal = FALSE)
-{
+
+theme_mfe <- function (font_family = "Merriweather", font_size_title = 11, font_size_body = 10, horizontal_axis = FALSE, bottom_legend = TRUE){
 
 # Switch for horizontal axis labels
-  if (horizontal == FALSE){ axis.text.x = element_text(family = font_family,
+  if (horizontal_axis == FALSE){ axis.text.x = element_text(family = font_family,
                                                        colour = "#323232",
                                                        size = font_size_body,
                                                        angle = 90)
@@ -32,6 +33,10 @@ theme_mfe <- function (font_family = "Merriweather", font_size_title = 11, font_
                                angle = 0)
 
   }
+
+# Switch for side legend
+  if(bottom_legend == TRUE){legend.position = "bottom"
+  } else { legend.position = 'right'}
 
 
 # List all the theme parts together
@@ -87,7 +92,7 @@ theme_mfe <- function (font_family = "Merriweather", font_size_title = 11, font_
                                         margin = margin(r = 10),
                                         hjust = 0),
              legend.title =  element_blank(),
-             legend.position = "bottom", legend.margin = margin(t = 20,
+             legend.position = legend.position, legend.margin = margin(t = 20,
                                                                 b = 20),
              legend.key = element_rect(fill = "white"),
              legend.key.height = unit(5, "mm"), legend.key.width = unit(5,
